@@ -7,7 +7,7 @@ This folder contains:
 How to apply the schema:
 1) Ensure PostgreSQL is running (use startup.sh provided in this container).
 2) Apply schema:
-   psql postgresql://appuser:dbuser123@localhost:5000/myapp -f schema.sql
+   psql postgresql://appuser:dbuser123@localhost:5001/myapp -f schema.sql
 
 Integration notes:
 - Backend should load DATABASE_URL from environment (.env) and create SQLAlchemy engine with echo disabled in production.
@@ -38,5 +38,5 @@ Security:
 
 ```bash
 # Quick verification
-psql postgresql://appuser:dbuser123@localhost:5000/myapp -c "\dt"
+psql postgresql://appuser:dbuser123@localhost:5001/myapp -c "\dt"
 ```
