@@ -4,6 +4,7 @@
   "description": "Simple database viewer for PostgreSQL, MySQL, SQLite, and MongoDB",
   "main": "server.js",
   "scripts": {
+    "prestart": "node -e \"try{require('express')}catch(e){process.exit(1)}\" || npm install --no-audit --no-fund",
     "start": "node server.js --host 0.0.0.0",
     "dev": "nodemon server.js"
   },

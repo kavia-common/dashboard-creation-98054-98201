@@ -9,6 +9,9 @@ How to apply the schema:
 2) Apply schema:
    psql postgresql://appuser:dbuser123@localhost:5001/myapp -f schema.sql
 
+Troubleshooting database startup:
+- If you encounter postmaster.pid lock or socket errors when starting PostgreSQL, see README-DB-RECOVERY.md in this folder for recovery steps. The startup.sh script now auto-detects and removes stale locks safely.
+
 Integration notes:
 - Backend should load DATABASE_URL from environment (.env) and create SQLAlchemy engine with echo disabled in production.
 - Use Alembic or the provided schema.sql to initialize database. If using Alembic, copy sqlalchemy_models.py into the backend (or import as shared module) and generate migrations.
