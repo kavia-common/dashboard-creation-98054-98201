@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  relationaldb:
+    image: postgres:16
+    container_name: relationaldb
+    environment:
+      - POSTGRES_USER=appuser
+      - POSTGRES_PASSWORD=dbuser123
+      - POSTGRES_DB=myapp
+    ports:
+      - "5001:5432"  # Map host 5001 to container 5432
+    volumes:
+      - ./RelationalDatabase/init:/docker-entrypoint-initdb.d:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB -p 5432"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - appnet
+
+networks:
+  appnet:
+
+volumes:
+  pgdata:
